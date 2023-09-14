@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- css -->
+    <!-- 使用Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <!-- 使用Select2 CSS -->
+    <link rel="stylesheet" href="css/select2.min.css" />
+    <!-- 使用最新版本的 Bootstrap Select CSS -->
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
+    <!-- 使用最新版本的 Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.css" />
+
+    <!-- js -->
+    <!-- 使用最新版本的 jQuery -->
+    <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
+    <!-- 使用最新版本的 Bootstrap JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- 使用最新版本的 Bootstrap Select JS -->
+    <script src="js/bootstrap-select.js"></script>
+    <!-- 使用最新版本的 Moment.js -->
+    <script src="js/moment.min.js"></script>
+    <!-- Include Bootstrap DateTimePicker JS and Moment.js -->
+    <script src="js/moment-locale-zh-tw.js"></script>
+    <!-- 使用最新版本的 Tempus Dominus for Bootstrap 4 -->
+    <script src="js/tempusdominus-bootstrap-4.min.js"></script>
+  </head>
+  <body>
+    <div class="container text-center mt-5" id="customSearchInput">
+      <div class="row align-items-center">
+        <div class="col-12 d-flex justify-content-between">
+          <div class="col-9 input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="請輸入欲查詢內容"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="btnSearch"
+              data-toggle="collapse"
+              data-target="#searchResults"
+              aria-expanded="false"
+              aria-controls="searchResults"
+            >
+              搜尋
+            </button>
+          </div>
+          <div class="col-3">
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-toggle="collapse"
+              data-target="#advancedSearch"
+              aria-expanded="false"
+              aria-controls="advancedSearch"
+            >
+              篩選條件
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="collapse mt-3" id="advancedSearch">
+        <div class="card card-body">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-4 mb-3">
+                  <label for="categorySelect">影片類別：</label>
+                  <select class="form-control" id="categorySelect">
+                    <option>請選擇</option>
+                    <option>電影</option>
+                    <option>電視劇</option>
+                    <option>動漫</option>
+                  </select>
+                </div>
+                <div class="col-lg-4 mb-3">
+                  <label for="platformSelect">OTT平台：</label>
+                  <select
+                    class="selectpicker form-control"
+                    multiple
+                    data-live-search="true"
+                    id="platformSelect"
+                  >
+                    <option>Netflix</option>
+                    <option>Youtube</option>
+                    <option>TVBS</option>
+                  </select>
+                </div>
+                <div class="col-lg-4 mb-3">
+                  <label for="typeSelect">影片類型:</label>
+                  <select
+                    class="selectpicker form-control"
+                    multiple
+                    data-live-search="true"
+                    id="typeSelect"
+                  >
+                    <option>愛情片</option>
+                    <option>動作片</option>
+                    <option>恐怖片</option>
+                    <option>戰爭片</option>
+                    <option>家庭片</option>
+                    <option>科幻片</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="startDatePicker">起始時間：</label>
+                  <div
+                    class="input-group date"
+                    id="startDatePicker"
+                    data-target-input="nearest"
+                  >
+                    <input
+                      type="text"
+                      class="form-control datetimepicker-input"
+                      data-target="#startDatePicker"
+                    />
+                    <div
+                      class="input-group-append"
+                      data-target="#startDatePicker"
+                      data-toggle="datetimepicker"
+                    >
+                      <div class="input-group-text">
+                        <i class="fas fa-calendar"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="endDatePicker">最終時間：</label>
+                  <div
+                    class="input-group date"
+                    id="endDatePicker"
+                    data-target-input="nearest"
+                  >
+                    <input
+                      type="text"
+                      class="form-control datetimepicker-input"
+                      data-target="#endDatePicker"
+                    />
+                    <div
+                      class="input-group-append"
+                      data-target="#endDatePicker"
+                      data-toggle="datetimepicker"
+                    >
+                      <div class="input-group-text">
+                        <i class="fas fa-calendar"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="container mt-3">
+    <div class="row">
+    <table
+      id="example"
+      class="table table-striped table-bordered"
+      style="width: 100%"
+    >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>標題</th>
+          <th>簡介</th>
+          <th>影片類別</th>
+          <th>影片類型</th>
+          <th>上映平台</th>
+          <th>上映日期</th>
+          <th>封面路徑</th>
+          <th>編輯</th>
+          <th>刪除</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    </div>
+</div>
+
+
+    <script>
+
+      var jsonData = [
+        {
+          ID: "1",
+          標題: "星際大戰",
+          簡介: "一部史詩般的太空冒險故事。",
+          影片類別: "電影",
+          影片類型: ["動作片", "科幻片"],
+          上映平台: ["Netflix", "Youtube"],
+          上映日期: "2023-09-01",
+          封面路徑: "/images/star_wars.jpg",
+        },
+        {
+          ID: "2",
+          標題: "美麗心靈",
+          簡介: "一個溫馨的家庭故事。",
+          影片類別: "電視劇",
+          影片類型: ["劇情片"],
+          上映平台: ["Amazon Prime"],
+          上映日期: "2023-08-15",
+          封面路徑: "/images/beautiful_mind.jpg",
+        },
+        {
+          ID: "3",
+          標題: "瘋狂麥斯：狂暴之路",
+          簡介: "一場極速的荒野追逐。",
+          影片類別: "電影",
+          影片類型: ["科幻片"],
+          上映平台: ["HBO Max"],
+          上映日期: "2023-07-10",
+          封面路徑: "/images/mad_max.jpg",
+        },
+        {
+          ID: "4",
+          標題: "冒險之旅",
+          簡介: "一段未知世界的探險之旅。",
+          影片類別: "電影",
+          影片類型: ["冒險片", "奇幻片"],
+          上映平台: ["Netflix", "Hulu"],
+          上映日期: "2023-10-20",
+          封面路徑: "/images/adventure.jpg",
+        },
+        {
+          ID: "5",
+          標題: "家庭時光",
+          簡介: "一個關於家庭的感人故事。",
+          影片類別: "電視劇",
+          影片類型: ["劇情片", "家庭片"],
+          上映平台: ["Amazon Prime"],
+          上映日期: "2023-09-25",
+          封面路徑: "/images/family_time.jpg",
+        },
+        {
+          ID: "6",
+          標題: "未來之戰",
+          簡介: "一場未來世界的戰爭大戲。",
+          影片類別: "電影",
+          影片類型: ["科幻片", "動作片"],
+          上映平台: ["Netflix", "HBO Max"],
+          上映日期: "2023-11-05",
+          封面路徑: "/images/future_war.jpg",
+        },
+        {
+          ID: "7",
+          標題: "城市之夜",
+          簡介: "夜晚城市的探險。",
+          影片類別: "電影",
+          影片類型: ["驚悚片"],
+          上映平台: ["Amazon Prime", "Netflix"],
+          上映日期: "2023-09-18",
+          封面路徑: "/images/city_night.jpg",
+        },
+        {
+          ID: "8",
+          標題: "奇幻之地",
+          簡介: "一個充滿魔法的奇幻世界。",
+          影片類別: "電視劇",
+          影片類型: ["奇幻片", "冒險片"],
+          上映平台: ["Disney+"],
+          上映日期: "2023-10-10",
+          封面路徑: "/images/fantasy_land.jpg",
+        },
+        {
+          ID: "9",
+          標題: "極速之旅",
+          簡介: "速度與激情的極速之旅。",
+          影片類別: "電影",
+          影片類型: ["动作片"],
+          上映平台: ["HBO Max", "Netflix"],
+          上映日期: "2023-11-15",
+          封面路徑: "/images/fast_journey.jpg",
+        },
+        {
+          ID: "10",
+          標題: "科學之謎",
+          簡介: "揭示科學之謎的探索。",
+          影片類別: "電影",
+          影片類型: ["紀錄片"],
+          上映平台: ["Netflix", "Disney+"],
+          上映日期: "2023-10-05",
+          封面路徑: "/images/science_mystery.jpg",
+        },
+        {
+          ID: "11",
+          標題: "魔法學院",
+          簡介: "一個魔法學院的冒險。",
+          影片類別: "電視劇",
+          影片類型: ["奇幻片", "冒險片"],
+          上映平台: ["Amazon Prime", "Netflix"],
+          上映日期: "2023-09-10",
+          封面路徑: "/images/magic_school.jpg",
+        },
+        {
+          ID: "12",
+          標題: "機器之心",
+          簡介: "機器人和人類的故事。",
+          影片類別: "電影",
+          影片類型: ["科幻片", "劇情片"],
+          上映平台: ["HBO Max", "Amazon Prime"],
+          上映日期: "2023-11-20",
+          封面路徑: "/images/machine_heart.jpg",
+        },
+        {
+          ID: "13",
+          標題: "戀愛日記",
+          簡介: "一段戀愛的回憶錄。",
+          影片類別: "電影",
+          影片類型: ["愛情片", "劇情片"],
+          上映平台: ["Netflix", "Disney+"],
+          上映日期: "2023-10-30",
+          封面路徑: "/images/love_diary.jpg",
+        },
+        {
+          ID: "14",
+          標題: "神秘失踪",
+          簡介: "一宗神秘失踪案的調查。",
+          影片類別: "電影",
+          影片類型: ["驚悚片", "犯罪片"],
+          上映平台: ["Amazon Prime", "HBO Max"],
+          上映日期: "2023-09-05",
+          封面路徑: "/images/mystery_disappearance.jpg",
+        },
+        {
+          ID: "15",
+          標題: "音樂之夜",
+          簡介: "一場充滿音樂的夜晚。",
+          影片類別: "電影",
+          影片類型: ["音樂片", "劇情片"],
+          上映平台: ["Netflix", "Disney+"],
+          上映日期: "2023-10-12",
+          封面路徑: "/images/music_night.jpg",
+        },
+        {
+          ID: "16",
+          標題: "科學之謎2",
+          簡介: "續集：揭示更多科學之謎的探索。",
+          影片類別: "電影",
+          影片類型: ["紀錄片"],
+          上映平台: ["Netflix", "Disney+"],
+          上映日期: "2023-11-02",
+          封面路徑: "/images/science_mystery_2.jpg",
+        },
+        {
+          ID: "17",
+          標題: "古代冒險",
+          簡介: "回到古代的神秘冒險。",
+          影片類別: "電影",
+          影片類型: ["冒險片", "古代片"],
+          上映平台: ["Amazon Prime", "HBO Max"],
+          上映日期: "2023-09-22",
+          封面路徑: "/images/ancient_adventure.jpg",
+        },
+        {
+          ID: "18",
+          標題: "家族之光",
+          簡介: "一個家族的故事。",
+          影片類別: "電視劇",
+          影片類型: ["家庭片", "劇情片"],
+          上映平台: ["Netflix", "Amazon Prime"],
+          上映日期: "2023-11-12",
+          封面路徑: "/images/family_light.jpg",
+        },
+        {
+          ID: "19",
+          標題: "未知星球",
+          簡介: "探索未知星球的旅程。",
+          影片類別: "電影",
+          影片類型: ["科幻片", "冒險片"],
+          上映平台: ["Netflix", "HBO Max"],
+          上映日期: "2023-09-28",
+          封面路徑: "/images/unknown_planet.jpg",
+        },
+        {
+          ID: "20",
+          標題: "驚悚之夜",
+          簡介: "一場驚悚之夜的故事。",
+          影片類別: "電影",
+          影片類型: ["驚悚片", "恐怖片"],
+          上映平台: ["Amazon Prime", "Netflix"],
+          上映日期: "2023-10-08",
+          封面路徑: "/images/thriller_night.jpg",
+        },
+      ];
+
+      $(document).ready(function () {
+        // 初始化 Bootstrap Select
+        $(".selectpicker").selectpicker();
+
+        // Initialize DateTimePickers
+        $(function () {
+          $("#startDatePicker").datetimepicker({
+            format: "YYYY-MM-DD",
+            locale: "zh-tw", // 使用中文本地化
+          });
+
+          $("#endDatePicker").datetimepicker({
+            format: "YYYY-MM-DD",
+            locale: "zh-tw", // 使用中文本地化
+          });
+        });
+
+        // 初始化Datatables
+        var table = $("#example").DataTable({
+          dom: "lrtp",
+          responsive: true,
+          pagelength: 10,
+          pagingType: "full_numbers",
+          // searching: false,
+          data: jsonData,
+          columns: [
+            { data: "ID" },
+            { data: "標題" },
+            { data: "簡介" },
+            { data: "影片類別" },
+            {
+              data: "影片類型",
+              render: function (data, type, row) {
+                // 在这里自定义列的内容，添加徽章
+                var badgeHtml = "";
+                for (var i = 0; i < data.length; i++) {
+                  badgeHtml +=
+                    '<span class="badge rounded-pill bg-info text-white">' +
+                    data[i] +
+                    "</span> ";
+                }
+                return badgeHtml;
+              },
+            },
+            {
+              data: "上映平台",
+              render: function (data, type, row) {
+                // 在这里自定义列的内容，添加徽章
+                var badgeHtml = "";
+                for (var i = 0; i < data.length; i++) {
+                  badgeHtml +=
+                    '<span class="badge rounded-pill bg-info text-white">' +
+                    data[i] +
+                    "</span> ";
+                }
+                return badgeHtml;
+              },
+            },
+            { data: "上映日期" },
+            { data: "封面路徑" },
+            {
+              data: null,
+              render: function (data, type, row) {
+                return '<button type="button" class="btn btn-success">Edit</button>';
+              },
+            },
+            {
+              data: null,
+              render: function (data, type, row) {
+                return '<button type="button" class="btn btn-danger">Delete</button>';
+              },
+            },
+          ],
+        });
+
+        function filterByKey(data, genres, filterKey) {
+          // 檢查傳入的參數是否為陣列
+          if (!Array.isArray(genres) || genres.length === 0) {
+            console.error("無效的篩選條件");
+            return [];
+          }
+
+          // 使用 filter 函数筛选匹配的电影数据
+          var filteredData = data.filter(function (movie) {
+            return genres.some(function (genre) {
+              // console.log("filter key resulit = " + movie[filterKey].includes(genre));
+              return movie[filterKey].includes(genre);
+            });
+          });
+
+          return filteredData;
+        }
+
+        function initDatatable(data) {
+          table.clear();
+          table.rows.add(data);
+          table.rows().invalidate().draw();
+        }
+
+        $("#btnSearch").click(function () {
+          // 清除表格的筛选条件
+          table.search("").columns().search("").draw();
+          // 重新載入json資料
+          initDatatable(jsonData);
+          var searchText = $(".input-group input").val();
+          var categorySelectValue = $("#categorySelect").val();
+          var platformSelectValue = $("#platformSelect").val();
+          var typeSelectValue = $("#typeSelect").val();
+          var startDateValue = $("#startDatePicker").find("input").val();
+          var endDateValue = $("#endDatePicker").find("input").val();
+
+          if (searchText.length > 0) {
+            table.search(searchText);
+          }
+
+          if (categorySelectValue != "請選擇") {
+            table.column(3).search(categorySelectValue);
+          }
+
+          if (typeSelectValue.length > 0) {
+            // 清除表格数据
+            table.clear();
+
+            // 添加匹配的数据到表格
+            table.rows.add(filterByKey(jsonData, typeSelectValue, "影片類型"));
+
+            // 重新加载匹配的数据
+            table.rows().invalidate().draw();
+          }
+
+          if (platformSelectValue.length > 0) {
+            // 清除表格数据
+            table.clear();
+
+            // 添加匹配的数据到表格
+            table.rows.add(
+              filterByKey(jsonData, platformSelectValue, "上映平台")
+            );
+
+            // 重新加载匹配的数据
+            table.rows().invalidate().draw();
+          }
+
+          $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+            var startDate = moment(startDateValue, "YYYY-MM-DD");
+            var endDate = moment(endDateValue, "YYYY-MM-DD");
+
+            var date = moment(data[6], "YYYY-MM-DD");
+
+            if (startDate._isValid === false && endDate._isValid === false) {
+              return true;
+            }
+            if (startDate._isValid === false && endDate.isSameOrAfter(date)) {
+              return true;
+            }
+            if (startDate.isSameOrBefore(date) && endDate._isValid === false) {
+              return true;
+            }
+            if (startDate.isSameOrBefore(date) && endDate.isSameOrAfter(date)) {
+              return true;
+            }
+            return false;
+          });
+
+          table.draw(); // 重繪查詢結果
+
+          $.fn.dataTable.ext.search.pop();
+        });
+      });
+    </script>
+  </body>
+</html>

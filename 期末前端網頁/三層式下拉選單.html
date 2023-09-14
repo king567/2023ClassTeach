@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-submenu.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"></script>
+    <script src="js/popper.min-2.11.8.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-submenu.js"></script>
+    <!-- <style>
+        .container {
+          margin-bottom: 300px;
+        }
+
+        @media (max-width: 767.98px) {
+          [x-placement^="bottom-"],
+          [x-placement^="top-"] {
+            top: 100% !important;
+            bottom: auto !important;
+            transform: none !important;
+            .dropdown-submenu .dropdown-menu {
+              margin-top: 0;
+              margin-bottom: 0;
+              left: 0;
+              right: 0;
+              margin-left: -1px;
+              margin-right: -1px;
+              top: 100%;
+              bottom: auto;
+            }
+  }
+
+  .dropdown-submenu .dropdown-item:focus {
+    outline: none;
+  }
+
+  .dropdown-submenu.dropright .dropdown-toggle::after {
+    transform: rotate(90deg);
+  }
+
+  /* // .dropdown-toggle::after */
+
+  .dropdown-toggle {
+    &.on {
+      &::after {
+        transform: rotate(180deg);
+
+        .dropdown-submenu & {
+          transform: rotate(270deg);
+        }
+      }
+    }
+  }
+
+  .navbar-nav {
+    width: 100%;
+
+    .dropdown-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dropdown-item {
+      padding: 0.25rem 0.25rem;
+    }
+
+    .dropdown-menu {
+      border: none;
+
+      margin-top: 0;
+      padding-top: 0;
+      .dropdown-menu {
+        margin-left: 1rem;
+        margin-top: 0;
+      }
+    }
+
+    .dropdown.show .dropdown-submenu.dropright .dropdown-toggle::after {
+      margin-right: 12px;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+      border: none;
+    }
+  }
+}
+
+    </style> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="javascript:void(0)"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-submenu
+          >
+            Multi-level Lv0
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown dropright dropdown-submenu">
+              <a
+                class="dropdown-item dropdown-toggle"
+                href="javascript:void(0)"
+                data-toggle="dropdown"
+                >Multi-level Lv1</a
+              >
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Multi-level Lv2</a></li>
+                <li class="dropdown dropright dropdown-submenu">
+                  <a
+                    class="dropdown-item dropdown-toggle"
+                    href="javascript:void(0)"
+                    >Multi-level Lv2</a
+                  >
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="#">Multi-level Lv3</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Multi-level Lv3</a>
+                    </li>
+                    <li class="dropdown dropright dropdown-submenu">
+                      <a
+                        class="dropdown-item dropdown-toggle"
+                        href="javascript:void(0)"
+                        >Multi-level Lv3</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item" href="#">Multi-level Lv4</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">Multi-level Lv4</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">Multi-level Lv4</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="dropdown-item" href="#">Multi-level Lv2</a></li>
+              </ul>
+            </li>
+            <li><a class="dropdown-item" href="#">Multi-level Lv1</a></li>
+            <li><a class="dropdown-item" href="#">Multi-level Lv1</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <script>
+      $(function () {
+        $("[data-submenu]").submenupicker();
+        $(".dropdown-toggle").on("click", function () {
+          $(this).toggleClass("on");
+        });
+
+        $(".dropdown").on("hide.bs.dropdown", function () {
+          $(".dropdown-toggle").removeClass("on");
+        });
+
+        $(document).on("keypress", "input", function (e) {
+          var code = e.keyCode || e.which;
+          if (code == 27) {
+            $(".dropdown-toggle").removeClass("on");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

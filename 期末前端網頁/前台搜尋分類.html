@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="zh-TW" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>導覽列</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/selectTypes.css">
+  
+  <style>
+    .navbar {
+      font-size: 20px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-grow: 1;
+      flex: 1;
+      text-align: center;
+    }
+
+    .nav-item {
+      /* flex: 1; */
+      text-align: center;
+    }
+
+  </style>
+  <style>
+    .card-img-top {
+        height: 300px; /* 调整为您需要的固定高度值 */
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
+</head>
+
+<body>
+  <!-- 導覽列 begin -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="/首頁%20copy%202.html"
+        style="font-size: 30px;font-weight: 900; color: rgb(138, 216, 216);">Brand</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/首頁%20copy%202.html">首頁</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">電影</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">戲劇</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">動畫</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">積分商城</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/最新消息.html">最新消息</a>
+          </li>
+          <form class="d-flex ms-auto " style="display: flex; -ms-flex-align: end;">
+            <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+          </form>
+          <li class="nav-item">
+            <a class="nav-link" href="#">登入</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/註冊.html?">註冊</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/方案介紹.html">方案介紹</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- 導覽列 end -->
+  <!-- 麵包屑 begin -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/首頁%20copy%202.html">首頁</a></li>
+      <li class="breadcrumb-item active" aria-current="page"></li>
+    </ol>
+  </nav>
+  <!-- 麵包屑 end -->
+  <section class="home-content">
+  
+    
+  </section>
+
+  <!-- 選擇分類 begin -->
+<div class="container text-nowrap" style=" margin-top: 70px;">
+    <div class="row">
+        <div class="col-2" >
+            <ul class="list-group">
+                <a class="list-group-item list-group-item-action" href="">電影</a>
+                <a class="list-group-item list-group-item-action" href="">電視劇</a>
+                <a class="list-group-item list-group-item-action" href="">動漫</a>
+            </ul>
+        </div>
+        <div class="col-10">
+            <div class="container" id="typeId">
+                <div class="row">
+                    <div class="col-12" style="display: flex;">
+                        <div class="col-1 mt-2">
+                            按類型
+                        </div>
+                        <div class="col-11 text-center">
+                            <ul class="list-group list-group-horizontal col-12">
+                                <li class="list-group-item"><a class="" href="#">動作</a></li>
+                                <li class="list-group-item"><a class="" href="#">冒險</a></li>
+                                <li class="list-group-item"><a class="" href="#">動畫</a></li>
+                                <li class="list-group-item"><a class="" href="#">愛情</a></li>
+                                <li class="list-group-item"><a class="" href="#">歷史</a></li>
+                                <li class="list-group-item"><a class="" href="#">西方</a></li>
+                                <li class="list-group-item"><a class="" href="#">溫馨</a></li>
+                                <li class="list-group-item"><a class="" href="#">戰爭</a></li>
+                                <li class="list-group-item"><a class="" href="#">音樂</a></li>
+                                <li class="list-group-item"><a class="" href="#">紀錄</a></li>
+                                <li class="list-group-item"><a class="" href="#">神秘</a></li>
+                                <li class="list-group-item"><a class="" href="#">恐怖</a></li>
+                                <li class="list-group-item"><a class="" href="#">羅曼</a></li>
+                                <li class="list-group-item"><a class="" href="#">科學</a></li>
+                                <li class="list-group-item"><a class="" href="#">音樂</a></li>
+                                <li class="list-group-item"><a class="" href="#">紀錄</a></li>
+                                <li class="list-group-item"><a class="" href="#">愛情</a></li>
+                                <li class="list-group-item"><a class="" href="#">冒險</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-12" style="display: flex;">
+                        <div class="col-1 mt-2">
+                            按平台
+                        </div>
+                        <div class="col-11 text-center">
+                            <ul class="list-group list-group-horizontal col-12">
+                                <li class="list-group-item"><a class="" href="#">Netfilx</a></li>
+                                <li class="list-group-item"><a class="" href="#">TVBS</a></li>
+                                <li class="list-group-item"><a class="" href="#">Disney</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12" style="display: flex;">
+                        <div class="col-1 mt-2">
+                            按時間
+                        </div>
+                        <div class="col-11 text-center">
+                            <ul class="list-group list-group-horizontal col-12">
+                                <li class="list-group-item" style="width: 100px;"><a class="" href="#">即將上映</a></li>
+                                <li class="list-group-item" style="width: 100px;"><a class="" href="#">近期上映</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+  <!-- 選擇分類 end -->
+  
+<!-- 搜尋到的內容 begin-->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/batman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蝙蝠俠</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa vel deserunt magni inventore corrupti aliquam, ad tempora saepe. Inventore eaque, labore quo iure dicta accusantium fugit minus quaerat dignissimos dolorem?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/ironman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">鋼鐵人</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam pariatur commodi voluptas adipisci omnis quos debitis aut, laudantium cum distinctio. Quis enim quas doloremque voluptatibus molestias alias incidunt eum praesentium!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 搜尋到的內容 end -->
+
+
+  <!--底部begin-->
+  <footer style="background-color: whitesmoke; margin-top: 20px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" style="margin-top:20px;">
+          <h5 style="font-size: 25px; font-weight: 500;">客戶服務</h5>
+          <a class="dropdown-item" href="#" style="font-size: 17px; font-weight: 500; margin-top: 10px;">服務內容</a>
+          <a class="dropdown-item" href="#" style="font-size: 17px; font-weight: 500; margin-top: 10px;">常見問答</a>
+          <a class="dropdown-item" href="/聯絡我們.html" style="font-size: 17px; font-weight: 500; margin-top: 10px;">聯絡我們</a>
+        </div>
+        <div class="col-md-6" style="margin-top:20px ;">
+          <h5 style="font-size: 25px; font-weight: 500;">關注我們</h5>
+          <ul class="list-unstyled">
+            <a class='bx bxl-facebook-circle' href="#" style="text-decoration: none; font-size: 50px; margin-left: 10px;"></a>
+            <a class='bx bxl-twitter' href="#" style="text-decoration: none; font-size: 50px; margin-left: 10px;"></a>
+            <a class='bx bxl-instagram' href="#" style="text-decoration: none; font-size: 50px; margin-left: 10px;"></a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="text-center py-3">
+      &copy; 2023 Brand。保留所有權利。
+    </div>
+  </footer>
+  <!--底部end-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="Scripts/bootstrap.bundle.js"></script>
+  
+</body>
+
+</html>

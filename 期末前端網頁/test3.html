@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <!-- ... 省略其他头部内容 ... -->
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <p>This is some initial content.</p>
+            <p class="hidden">This is additional content that will be hidden initially.</p>
+            <p class="hidden">More hidden content...</p>
+            <button id="showMoreBtn">顯示更多</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const showMoreBtn = document.getElementById("showMoreBtn");
+            const hiddenElements = document.querySelectorAll(".hidden");
+
+            showMoreBtn.addEventListener("click", function () {
+                hiddenElements.forEach(function (element) {
+                    element.style.display = "block";
+                });
+                showMoreBtn.style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>

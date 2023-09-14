@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜尋影片</title>
+
+    <!-- css -->
+    <!-- 使用Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- 使用Select2 CSS -->
+    <link rel="stylesheet" href="css/select2.min.css">
+    <!-- 使用最新版本的 Bootstrap Select CSS -->
+    <link rel="stylesheet" href="css/bootstrap-select.css">
+    <!-- 使用最新版本的 Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.css">
+
+    <!-- js -->
+    <!-- 使用最新版本的 jQuery -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <!-- 使用最新版本的 Bootstrap JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- 使用最新版本的 Bootstrap Select JS -->
+    <script src="js/bootstrap-select.js"></script>
+    <!-- 使用最新版本的 Moment.js -->
+    <script src="js/moment.min.js"></script>
+     <!-- Include Bootstrap DateTimePicker JS and Moment.js -->
+    <script src="js/moment-locale-zh-tw.js"></script>
+    <!-- 使用最新版本的 Tempus Dominus for Bootstrap 4 -->
+    <script src="js/tempusdominus-bootstrap-4.min.js"></script>
+
+
+   <style>
+        .card-img-top {
+            height: 400px; /* 调整为您需要的固定高度值 */
+            width: 100%;
+            object-fit: cover;
+        }
+   </style>
+
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <div class="row align-items-center">
+            <div class="col-12 d-flex justify-content-between">
+                <div class="col-9 input-group">
+                    <input type="text" class="form-control" placeholder="請輸入欲查詢內容">
+                    <button class="btn btn-outline-secondary" type="button" id="btnSearch" data-toggle="collapse" data-target="#searchResults" aria-expanded="false" aria-controls="searchResults">搜尋</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#advancedSearch" aria-expanded="false" aria-controls="advancedSearch">
+                        篩選條件
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="collapse mt-3" id="advancedSearch">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-4 mb-3">
+                                <label for="categorySelect">影片類別：</label>
+                                <select class="form-control" id="categorySelect">
+                                    <option>請選擇</option>
+                                    <option>電影</option>
+                                    <option>電視劇</option>
+                                    <option>動漫</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="platformSelect">OTT平台：</label>
+                                <select class="selectpicker form-control" multiple data-live-search="true" id="platformSelect">
+                                    <option>Netflix</option>
+                                    <option>Youtuber</option>
+                                    <option>TVBS</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="typeSelect">影片類型:</label>
+                                <select class="selectpicker form-control" multiple data-live-search="true" id="typeSelect">
+                                    <option>愛情片</option>
+                                    <option>動作片</option>
+                                    <option>恐怖片</option>
+                                    <option>戰爭片</option>
+                                    <option>家庭片</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="startDatePicker">起始時間：</label>
+                                <div class="input-group date" id="startDatePicker" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#startDatePicker" />
+                                    <div class="input-group-append" data-target="#startDatePicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="endDatePicker">最終時間：</label>
+                                <div class="input-group date" id="endDatePicker" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#endDatePicker" />
+                                    <div class="input-group-append" data-target="#endDatePicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collapse mt-3" id="searchResults">
+            <div class="card card-body">
+                <h3>搜尋結果 共3筆</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="images/batman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蝙蝠俠</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa vel deserunt magni inventore corrupti aliquam, ad tempora saepe. Inventore eaque, labore quo iure dicta accusantium fugit minus quaerat dignissimos dolorem?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="images/ironman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">鋼鐵人</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam pariatur commodi voluptas adipisci omnis quos debitis aut, laudantium cum distinctio. Quis enim quas doloremque voluptatibus molestias alias incidunt eum praesentium!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="images/spiderman.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">蜘蛛人</h5>
+                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas corporis delectus earum architecto maxime adipisci, quo quia? Officiis quibusdam consequatur quidem odit unde nesciunt? Tempora et maiores odio laudantium doloremque?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化 Bootstrap Select
+        $('.selectpicker').selectpicker();
+
+        // Initialize DateTimePickers
+        $(function () {
+            $('#startDatePicker').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'zh-tw', // 使用中文本地化
+            });
+
+            $('#endDatePicker').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'zh-tw', // 使用中文本地化
+            });
+        });
+    </script>
+    
+</body>
+</html>

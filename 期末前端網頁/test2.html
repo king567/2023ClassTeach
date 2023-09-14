@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>搜尋影片</title>
+    
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+        <!-- Include Bootstrap DateTimePicker CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Include Bootstrap DateTimePicker JS and Moment.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/zh-tw.js"></script>
+    
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    </head>
+
+<body>
+    <div class="container text-center mt-5">
+        <div class="row align-items-center">
+            <div class="col-12 d-flex justify-content-between">
+                <div class="col-9 input-group">
+                    <input type="text" class="form-control" placeholder="請輸入欲查詢內容">
+                    <button class="btn btn-outline-secondary" type="button" id="btnSearch" data-toggle="collapse" data-target="#searchResults" aria-expanded="false" aria-controls="searchResults">搜尋</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#advancedSearch" aria-expanded="false" aria-controls="advancedSearch">
+                        進階條件
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="collapse mt-3" id="advancedSearch">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-4 mb-3">
+                                <label for="categorySelect">影片類別：</label>
+                                <select class="form-control" id="categorySelect">
+                                    <option>請選擇</option>
+                                    <option>電影</option>
+                                    <option>電視劇</option>
+                                    <option>動漫</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="platformSelect">OTT平台：</label>
+                                <select class="form-control selectpicker" multiple data-live-search="true">
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                  </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="typeSelect">影片類型:</label>
+                                <select class="form-control" id="typeSelect">
+                                    <option>請選擇</option>
+                                    <option>愛情片</option>
+                                    <option>動作片</option>
+                                    <option>恐怖片</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="startDatePicker">起始時間：</label>
+                                <div class="input-group date" id="startDatePicker" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#startDatePicker" />
+                                    <div class="input-group-append" data-target="#startDatePicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="endDatePicker">最終時間：</label>
+                                <div class="input-group date" id="endDatePicker" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#endDatePicker" />
+                                    <div class="input-group-append" data-target="#endDatePicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
+        </div>
+        <div class="collapse mt-3" id="searchResults">
+    <div class="card card-body">
+        <h3>搜尋結果 共3筆</h3>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">影片標題</h5>
+                        <p class="card-text">影片描述或資訊...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">影片標題</h5>
+                        <p class="card-text">影片描述或資訊...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">影片標題</h5>
+                        <p class="card-text">影片描述或資訊...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 新增的 div 區塊結束 -->
+
+    </div>
+
+    <script>
+
+$('select').selectpicker();
+        // Initialize DateTimePickers
+        $(function () {
+            $('#startDatePicker').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'zh-tw', // 使用中文本地化
+            });
+
+            $('#endDatePicker').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'zh-tw', // 使用中文本地化
+            });
+        });
+    </script>
+</body>
+</html>

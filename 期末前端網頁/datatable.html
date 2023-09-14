@@ -39,6 +39,7 @@
     <script src="js/tempusdominus-bootstrap-4.min.js"></script>
   </head>
   <body>
+
     <div class="container text-center mt-5" id="customSearchInput">
       <div class="row align-items-center">
         <div class="col-12 d-flex justify-content-between">
@@ -99,6 +100,7 @@
                     <option>Netflix</option>
                     <option>Youtube</option>
                     <option>TVBS</option>
+                    <option>Disney+</option>
                   </select>
                 </div>
                 <div class="col-lg-4 mb-3">
@@ -173,8 +175,8 @@
         </div>
       </div>
     </div>
-<div class="container mt-3">
-    <div class="row">
+
+    <!-- 列出影片表 begin -->
     <table
       id="example"
       class="table table-striped table-bordered"
@@ -196,8 +198,7 @@
       </thead>
       <tbody></tbody>
     </table>
-    </div>
-</div>
+   <!-- 列出影片表 end -->
 
 
     <script>
@@ -405,6 +406,8 @@
         },
       ];
 
+      var tempData = [];
+
       $(document).ready(function () {
         // 初始化 Bootstrap Select
         $(".selectpicker").selectpicker();
@@ -464,7 +467,9 @@
               },
             },
             { data: "上映日期" },
-            { data: "封面路徑" },
+            { data: "封面路徑" , render: function (data, type, row) {
+              return '<a href="#" class="link-underline-dark">'+ data +'</a>';
+            }},
             {
               data: null,
               render: function (data, type, row) {
@@ -480,25 +485,31 @@
           ],
         });
 
-        function filterByKey(data, genres, filterKey) {
+        function filterByKey(data, inputValue, filterKey) {
           // 檢查傳入的參數是否為陣列
-          if (!Array.isArray(genres) || genres.length === 0) {
+          if (!Array.isArray(inputValue) || inputValue.length === 0) {
             console.error("無效的篩選條件");
             return [];
           }
 
           // 使用 filter 函数筛选匹配的电影数据
           var filteredData = data.filter(function (movie) {
-            return genres.some(function (genre) {
-              // console.log("filter key resulit = " + movie[filterKey].includes(genre));
-              return movie[filterKey].includes(genre);
+           
+            return inputValue.every(function (inputValue) {
+              return movie[filterKey].includes(inputValue);
             });
+            // return inputValue.some(function (inputValue) {
+            //   return movie[filterKey].includes(inputValue);
+            // });
           });
-
+          
+          tempData = filteredData;
+          
           return filteredData;
         }
 
         function initDatatable(data) {
+          tempData = jsonData;
           table.clear();
           table.rows.add(data);
           table.rows().invalidate().draw();
@@ -507,8 +518,10 @@
         $("#btnSearch").click(function () {
           // 清除表格的筛选条件
           table.search("").columns().search("").draw();
+
           // 重新載入json資料
           initDatatable(jsonData);
+
           var searchText = $(".input-group input").val();
           var categorySelectValue = $("#categorySelect").val();
           var platformSelectValue = $("#platformSelect").val();
@@ -525,23 +538,26 @@
           }
 
           if (typeSelectValue.length > 0) {
-            // 清除表格数据
+            // 測試搜尋
+            // table.column(4).search(typeSelectValue);
+
+            // // 清除表格数据
             table.clear();
-
+            // console.log(filterByKey(jsonData, typeSelectValue, "影片類型"));
             // 添加匹配的数据到表格
-            table.rows.add(filterByKey(jsonData, typeSelectValue, "影片類型"));
-
+            table.rows.add(filterByKey(tempData, typeSelectValue, "影片類型"));
             // 重新加载匹配的数据
             table.rows().invalidate().draw();
           }
 
           if (platformSelectValue.length > 0) {
+            // table.column(5).search(platformSelectValue);
             // 清除表格数据
             table.clear();
 
             // 添加匹配的数据到表格
             table.rows.add(
-              filterByKey(jsonData, platformSelectValue, "上映平台")
+              filterByKey(tempData, platformSelectValue, "上映平台")
             );
 
             // 重新加载匹配的数据

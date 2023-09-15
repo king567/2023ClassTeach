@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace BookStore.Site.Controllers
 {
@@ -73,16 +75,180 @@ namespace BookStore.Site.Controllers
         [Authorize]
         public ActionResult EditProfile()
         {
+            var currentUserAccount = User.Identity.Name;
+            var vm = GetMemberProfile(currentUserAccount);
+            return View(vm);
+        }
+
+		[Authorize]
+        [HttpPost]
+		public ActionResult EditProfile(EditProfileVm vm)
+        {
+            var currentUserAccount = User.Identity.Name;
+            if(!ModelState.IsValid)
+            {
+				return View(vm);
+			}
+            try
+            {
+                UpdateProfile(vm, currentUserAccount);
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+				return View(vm);
+            }
             return View();
         }
 
-        [Authorize]
-        [HttpPost]
-        public ActionResult EditProfile(EditProfileVm vm)
+		[Authorize]
+		public ActionResult EditPassword()
         {
-            return View();
-        }
-        public ActionResult Login()
+			return View();
+		}
+
+		[Authorize]
+		[HttpPost]
+        public ActionResult EditPassword(EditPasswordVm vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+            try
+            {
+                var currentUserAccount = User.Identity.Name;
+                ChangePassword(vm, currentUserAccount);
+            }
+            catch (Exception ex)
+            {
+				ModelState.AddModelError("", ex.Message);
+				return View(vm);
+			}
+
+            return RedirectToAction("Index");
+		}
+
+        public ActionResult ForgotPassword()
+        {
+			return View();
+		}
+
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPasswordVm vm)
+        {
+			if (!ModelState.IsValid)
+            {
+				return View(vm);
+			}
+			var urlTemplate = Request.Url.Scheme + "://" + // 生成 http:.// 或 https://
+                            Request.Url.Authority + "/" + // 生成網域名稱或 ip
+                            "Members/ResetPassword?memberid={0}&confirmCode={1}"; // 生成網頁 url
+
+            try
+            {
+                ProccessRestPassword(vm.Account,vm.Email, urlTemplate);
+            }
+            catch(Exception ex)
+            {
+				ModelState.AddModelError("", ex.Message);
+				return View(vm);
+			}
+
+			return View("ForgotPasswordComfirm");
+		}
+
+		private void ProccessRestPassword(string account, string email, string urlTemplate)
+		{
+			var db = new AppDbContext();
+
+            // 檢查 account,email 正確性
+
+            var memberInDb = db.Members.FirstOrDefault(m => m.Account == account);
+            if(memberInDb == null)
+            {
+				throw new Exception("帳號不存在");
+			}
+            if(string.Compare(email,memberInDb.Email,StringComparison.CurrentCultureIgnoreCase) != 0)
+            {
+                throw new Exception("帳號 或 Email不正確");
+            }
+            if(memberInDb.IsConfirmed == false)
+            {
+				throw new Exception("您尚未開通會員資格，請先收確認信，並點選信裡的連結，完成認證，才能登入本網站");
+			}
+
+            var confirmCode = Guid.NewGuid().ToString("N");
+            memberInDb.ConfirmCode = confirmCode;
+            db.SaveChanges();
+
+            // 寄出重設密碼的信件
+
+            var url = string.Format(urlTemplate,memberInDb.Id,confirmCode);
+
+            new EmailHelper().SedForgetPasswordEmail(url,memberInDb.Name,memberInDb.Email);
+		}
+
+		private void ChangePassword(EditPasswordVm vm, string account)
+		{
+            var db = new AppDbContext();
+
+			var memberInDb = db.Members.FirstOrDefault(m => m.Account == account);
+            if(memberInDb == null)
+            {
+                throw new Exception("帳號不存在");
+            }
+            var salt = HashUtility.GetSalt();
+
+            //判斷輸入的原始密碼是否正確
+            var hashOrigPassword = HashUtility.ToSHA256(vm.OriginalPassword, salt);
+
+            if(string.Compare(memberInDb.EncryptedPassword,hashOrigPassword,true) != 0)
+            {
+				throw new Exception("原始密碼不正確");
+			}
+
+            // 將新密碼雜湊
+            var hashNewPassword = HashUtility.ToSHA256(vm.Password, salt);
+
+            // 更新紀錄
+            memberInDb.EncryptedPassword = hashNewPassword;
+            db.SaveChanges();
+		}
+
+		private void UpdateProfile(EditProfileVm vm, string account)
+		{
+            // 利用 vm.Id 去資料庫取得 Member
+            var db = new AppDbContext();
+            var memberInDb = db.Members.FirstOrDefault(m => m.Account == account);
+
+			if (memberInDb.Account != account)
+            {
+				throw new Exception("您沒有權限修改別人的資料");
+			}
+
+            memberInDb.Name = vm.Name;
+            memberInDb.Email = vm.Email;
+            memberInDb.Mobile = vm.Mobile;
+
+            db.SaveChanges();
+		}
+
+		private EditProfileVm GetMemberProfile(string account)
+		{
+			var db = new AppDbContext();
+			var member = db.Members.FirstOrDefault(m => m.Account == account);
+
+			if (member == null)
+			{
+				throw new Exception("帳號不存在");
+			}
+
+			var vm = member.ToEditProfileVm();
+
+			return vm;
+		}
+		public ActionResult Login()
         {
 			return View();
 		}

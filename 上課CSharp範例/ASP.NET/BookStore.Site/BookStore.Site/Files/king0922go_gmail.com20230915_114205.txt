@@ -1,0 +1,5 @@
+﻿form:king0922go@gmail.com
+to:king0922go@gmail.com
+subject:[重設計密碼通知]
+
+Hi wij 您好，<br/> 請點擊此連結[a href='https://localhost:44362/Members/ResetPassword?memberid=4&confirmCode=b177ecce904e422fac239580b125a0a8' target='_blank'我要重設密碼</a>],以進行重設密碼,如果您沒有提出申請,請忽略本信,謝謝
